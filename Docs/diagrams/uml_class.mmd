@@ -1,0 +1,55 @@
+classDiagram
+    class CCorrelationEngine {
+      -int m_lookback_bars
+      -double m_divergence_threshold
+      +Initialize(int,double) bool
+      +CalculateCorrelation(double[],double[],int) double
+      +GetCorrelationStrength(double) ENUM_CORRELATION_STRENGTH
+      +DetectDivergence(double,double) bool
+      +BuildMatrix(double[][],string[],ENUM_TIMEFRAMES,CDataManager&,int) bool
+    }
+
+    class CDataManager {
+      -string m_symbols[]
+      -ENUM_TIMEFRAMES m_timeframes[]
+      -int m_cache_seconds
+      -CachedData m_cache[]
+      +Initialize(string,string,int) bool
+      +ParseSymbols(string) bool
+      +ParseTimeframes(string) bool
+      +GetPriceData(string,ENUM_TIMEFRAMES,int,double[]) int
+      +RefreshCache() void
+      +Cleanup() void
+    }
+
+    class CMatrixDisplay {
+      -string m_prefix
+      -double m_last_values[]
+      -string m_last_symbols[]
+      +Initialize(...) bool
+      +DrawHeatmap(double[][],string[]) void
+      +SetVisibility(bool) void
+      +SetTitle(string) void
+      +SetTooltipsEnabled(bool) void
+      +Clear() void
+    }
+
+    class CAlertManager {
+      -AlertState m_states[]
+      -int m_cooldown_seconds
+      +Initialize(bool,bool,bool,int) bool
+      +SendAlert(string,ENUM_ALERT_TYPE,string) bool
+      +IsCoolingDown(string) bool
+      +Cleanup() void
+    }
+
+    class CLogger {
+      -ENUM_LOG_LEVEL m_level
+      +SetLevel(ENUM_LOG_LEVEL) void
+      +Error(string) void
+      +Debug(string) void
+    }
+
+    CCorrelationEngine --> CDataManager : fetch prices
+    CCorrelationEngine ..> CLogger : error logs
+    CDataManager ..> CLogger : error logs

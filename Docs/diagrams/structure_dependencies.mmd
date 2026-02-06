@@ -1,0 +1,32 @@
+flowchart LR
+    C[Constants.mqh]
+    L[Logger.mqh]
+    D[DataManager.mqh]
+    E[CorrelationEngine.mqh]
+    M[MatrixDisplay.mqh]
+    A[AlertManager.mqh]
+    I[MultiTimeframeCorrelation.mq5]
+    S1[ExportCorrelations.mq5]
+    S2[CorrelationBacktest.mq5]
+
+    D --> C
+    D --> L
+    E --> D
+    E --> C
+    E --> L
+    M --> C
+    A --> C
+
+    I --> C
+    I --> L
+    I --> D
+    I --> E
+    I --> M
+    I --> A
+
+    S1 --> E
+    S1 --> D
+    S1 --> L
+
+    S2 --> E
+    S2 --> L

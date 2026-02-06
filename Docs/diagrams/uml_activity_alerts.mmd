@@ -1,0 +1,17 @@
+flowchart TD
+    A[New pair correlation] --> B[Append history]
+    B --> C[Compute recent avg]
+    C --> D[Compute historical avg]
+    D --> E{Divergence >= threshold?}
+    E -- yes --> E1[Send ALERT_DIVERGENCE]
+    E -- no --> F
+    E1 --> F{Cross threshold level?}
+    F -- yes --> F1[Send ALERT_THRESHOLD]
+    F -- no --> G
+    F1 --> G{Historically strong and dropped?}
+    G -- yes --> G1[Send ALERT_BREAKDOWN + set breakdown_active]
+    G -- no --> H
+    G1 --> H{Near baseline and breakdown_active?}
+    H -- yes --> H1[Send ALERT_RECOVERY + clear breakdown_active]
+    H -- no --> I[Store prev corr]
+    H1 --> I

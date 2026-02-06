@@ -1,0 +1,13 @@
+flowchart TD
+    A[Inputs] --> B[DataManager]
+    B --> C[Price cache and retrieval]
+    C --> D[CorrelationEngine]
+    D --> E[Matrix per timeframe]
+    E --> F[MatrixDisplay panel i]
+    E --> G[Alert checks]
+    G --> H[AlertManager cooldown gate]
+    H --> I[Terminal/Push/Email/Sound]
+    E --> J[History state update]
+    J --> K[Optional CSV exports]
+    A --> T[Logger level]
+    T --> U[Diagnostics output]

@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant MT5 as MT5 Runtime
+    participant I as MultiTimeframeCorrelation
+    participant D as CDataManager
+    participant E as CCorrelationEngine
+    participant V as CMatrixDisplay[]
+    participant A as CAlertManager
+
+    MT5->>I: OnTimer()
+    I->>I: RefreshAllTimeframes(false)
+    loop each timeframe
+      I->>E: BuildMatrix(matrix,symbols,tf,data)
+      E->>D: GetPriceData(symbol,tf,bars,...)
+      D-->>E: prices or -1
+      E-->>I: matrix
+      I->>V: DrawHeatmap(matrix,symbols)
+      I->>I: CheckAlerts(matrix,symbols,tf)
+      I->>A: SendAlert(..., key)
+    end

@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant MT5 as MT5 Runtime
+    participant I as MultiTimeframeCorrelation
+
+    MT5->>I: OnChartEvent(CHARTEVENT_MOUSE_MOVE, state)
+    I->>I: IsRightMousePressed(state)
+    alt rising edge (up -> down)
+      I->>I: RefreshAllTimeframes(true)
+    else held or released
+      I->>I: no forced refresh
+    end
