@@ -10,7 +10,6 @@ npm-debug.log*
 
 # Local packaging/output
 release/
-*.zip
 
 # MT5 compiled/runtime artifacts
 *.ex5
@@ -19,4 +18,3 @@ release/
 # Python cache (if scripts are added later)
 __pycache__/
 *.pyc
-
