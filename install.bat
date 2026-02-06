@@ -18,6 +18,9 @@ if not defined MT5_PATH (
   exit /b 1
 )
 
+set "MT5_PATH=%MT5_PATH:"=%"
+if "%MT5_PATH:~-1%"=="\" set "MT5_PATH=%MT5_PATH:~0,-1%"
+
 if not exist "%MT5_PATH%" (
   echo Invalid MT5 path: %MT5_PATH%
   exit /b 1
@@ -51,15 +54,14 @@ echo Installation complete. >> "%LOG_FILE%"
 exit /b 0
 
 :find_mt5_path
-set "CANDIDATES=C:\Program Files\MetaTrader 5 C:\Program Files (x86)\MetaTrader 5 D:\Program Files\MetaTrader 5 C:\MT5"
-for %%P in (%CANDIDATES%) do (
+for %%P in ("C:\Program Files\MetaTrader 5" "C:\Program Files (x86)\MetaTrader 5" "D:\Program Files\MetaTrader 5" "C:\MT5") do (
   if exist "%%P\terminal64.exe" (
     set "MT5_PATH=%%P"
     goto :eof
   )
 )
 
-for %%P in (%CANDIDATES%) do (
+for %%P in ("C:\Program Files\MetaTrader 5" "C:\Program Files (x86)\MetaTrader 5" "D:\Program Files\MetaTrader 5" "C:\MT5") do (
   if exist "%%P\terminal.exe" (
     set "MT5_PATH=%%P"
     goto :eof
@@ -82,6 +84,8 @@ for /d %%D in ("%APPDATA%\MetaQuotes\Terminal\*") do (
       for /f "usebackq delims=" %%O in ("%%D\origin.txt") do set "ORIGIN=%%O"
       if defined ORIGIN (
         set "ORIGIN=!ORIGIN:"=!"
+        set "ORIGIN=!ORIGIN:\terminal64.exe=!"
+        set "ORIGIN=!ORIGIN:\terminal.exe=!"
       )
     )
     set /a COUNT+=1

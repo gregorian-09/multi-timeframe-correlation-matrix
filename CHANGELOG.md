@@ -24,6 +24,10 @@ All notable changes to this project are documented in this file.
 - Docs updated across `Docs/` for new inputs and interactions.
 - Export and data-copy failure diagnostics now include detailed context and error codes.
 
+### Fixed
+
+- Windows installer/uninstaller path detection now handles spaces, quotes, and origin matching reliably.
+
 ## [1.0.0] - 2026-02-04
 
 ### Added
