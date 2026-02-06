@@ -1,0 +1,22 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Node tooling (used for Mermaid rendering)
+node_modules/
+npm-debug.log*
+
+# Local packaging/output
+release/
+*.zip
+
+# MT5 compiled/runtime artifacts
+*.ex5
+*.log
+
+# Python cache (if scripts are added later)
+__pycache__/
+*.pyc
+
