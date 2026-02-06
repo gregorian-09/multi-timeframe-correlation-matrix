@@ -10,6 +10,7 @@ npm-debug.log*
 
 # Local packaging/output
 release/
+*.zip
 
 # MT5 compiled/runtime artifacts
 *.ex5
