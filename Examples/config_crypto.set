@@ -1,0 +1,4 @@
+Symbols=BTCUSD,ETHUSD,LTCUSD,XRPUSD,BNBUSD
+Timeframes=H1,H4,D1
+LookbackBars=50
+UpdateInterval=30

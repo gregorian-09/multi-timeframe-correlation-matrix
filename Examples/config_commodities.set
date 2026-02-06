@@ -1,0 +1,4 @@
+Symbols=XAUUSD,XAGUSD,XTIUSD,XBRUSD,XNGUSD
+Timeframes=H4,D1,W1
+LookbackBars=100
+UpdateInterval=300

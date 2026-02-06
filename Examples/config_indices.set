@@ -1,0 +1,4 @@
+Symbols=US500,US30,USTEC,DE40,UK100,JP225
+Timeframes=H1,H4,D1
+LookbackBars=100
+UpdateInterval=120

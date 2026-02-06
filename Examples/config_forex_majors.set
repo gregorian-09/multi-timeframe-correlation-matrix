@@ -1,0 +1,4 @@
+Symbols=EURUSD,GBPUSD,USDJPY,USDCHF,AUDUSD,USDCAD,NZDUSD
+Timeframes=H1,H4,D1
+LookbackBars=100
+UpdateInterval=60
